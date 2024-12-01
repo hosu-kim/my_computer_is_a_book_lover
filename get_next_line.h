@@ -20,7 +20,7 @@
 # endif
 
 //get_next_line.c
-char	*one_line_into_str(int fd, char *str);
+char	*line_into_storage(int fd, char *str);
 char	*get_next_line(int fd);
 char	*extract_line(char *left_str);
 char	*new_left_str(char *left_str);

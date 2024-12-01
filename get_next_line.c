@@ -12,8 +12,13 @@
 
 #include "get_next_line.h"
 
-// reads a line and saves it into str
-char	*one_line_into_str(int fd, char *str)
+/**
+ * @brief Reads a line from a file descriptor and appends it to a string.
+ * @param fd The file descriptor to read from
+ * @param str The string to append the read data to.
+ * @return The updated string with the read data appended, or NULL on failure.
+*/
+char	*line_into_storage(int fd, char *line_storage)
 {
 	char	*line;
 	int		bytes_read;
@@ -22,8 +27,8 @@ char	*one_line_into_str(int fd, char *str)
 	line = malloc(BUFFER_SIZE + 1);
 	if (!line)
 		return (NULL);
-	if (!str)
-		str = ft_strdup("");
+	if (!line_storage)
+		line_storage = ft_strdup("");
 	bytes_read = 1;
 	while (bytes_read > 0)
 	{
@@ -32,29 +37,29 @@ char	*one_line_into_str(int fd, char *str)
 		if (bytes_read == -1)
 		{
 			free(line);
-			free(str);
+			free(line_storage);
 			return (NULL);
 		}
 		if (bytes_read == 0)
 			break ;
-		temp = ft_strjoin(str, line);
-		free(str);
-		str = temp;
-		if (ft_strchr(str, '\n'))
+		temp = ft_strjoin(line_storage, line);
+		free(line_storage);
+		line_storage = temp;
+		if (ft_strchr(line_storage, '\n'))
 			break ;
 	}
 	free(line);
-	return (str);
+	return (line_storage);
 }
-/*
-21: malloc((BUFFER_SIZE + 1) * sizeof(char)): line 버퍼 할당 시 널 종료 문자를 위한 공간 확보
-27: read (파일 디스크립터, 저장할 버퍼, 몇 바이트)
-		반환: 읽어온 바이트 수, 오류 시 -1, 
-		세 번째 매개변수와 동일할 것 같지만, 불러온 데이터가 '적거나 없으면' 값이 달라질 수 있음.
-31: return (NULL): Error indication
+/**
+* 27: malloc((BUFFER_SIZE + 1) * sizeof(char)): line 버퍼 할당 시 널 종료 문자를 위한 공간 확보
+* 36: read (파일 디스크립터, 저장할 버퍼, 몇 바이트)
+*		반환: 읽어온 바이트 수, 오류 시 -1,
+*		세 번째 매개변수와 동일할 것 같지만, 불러온 데이터가 '적거나 없으면' 값이 달라질 수 있음.
+* 41: return (NULL): Error indication
 */
 
-// main function
+// @brief Main fuction;  
 char	*get_next_line(int fd)
 {
 	char		*line;
@@ -62,48 +67,47 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffered_str = one_line_into_str(fd, buffered_str);
+	buffered_str = line_into_storage(fd, buffered_str);
 	if (!buffered_str)
 		return (NULL);
 	line = extract_line(buffered_str);
 	buffered_str = new_left_str(buffered_str);
 	return (line);
 }
-/*
-static 변수는 한 번만 초기화됨; 기본 초기화값: NULL
-*/
-/*
-67: line = malloc((i + 2) * sizeof(char));
-	(i + 2): 널 문자와 줄바꿈 문자 포함
+/**
+* static 변수는 한 번만 초기화됨; 기본 초기화값: NULL
 */
 
-char	*extract_line(char *left_str)
-// extracts a line in left_str and saves it into line(return).
+/**
+ * @brief Extracts a line in left_str and appends it into line.
+ * @param line_storage
+*/
+char	*extract_line(char *line_storage)
 {
 	int		i;
-	char	*line;
+	char	*extract;
 
 	i = 0;
-	if (!left_str[i])
+	if (!line_storage[i])
 		return (NULL);
-	while (left_str[i] && left_str[i] != '\n')
+	while (line_storage[i] && line_storage[i] != '\n')
 		i++;
-	line = malloc((i + 2) * sizeof(char));
-	if (!line)
+	extract = malloc((i + 2) * sizeof(char));
+	if (!extract)
 		return (NULL);
 	i = 0;
-	while (left_str[i] && left_str[i] != '\n')
+	while (line_storage[i] && line_storage[i] != '\n')
 	{
-		line[i] = left_str[i];
+		extract[i] = line_storage[i];
 		i++;
 	}
-	if (left_str[i] == '\n')
+	if (line_storage[i] == '\n')
 	{
-		line[i] = left_str[i];
+		extract[i] = line_storage[i];
 		i++;
 	}
-	line[i] = '\0';
-	return (line);
+	extract[i] = '\0';
+	return (extract);
 }
 
 char	*new_left_str(char *left_str)
