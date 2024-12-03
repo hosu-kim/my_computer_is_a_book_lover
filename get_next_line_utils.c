@@ -93,7 +93,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	}
 	while (i < s1_len + s2_len)
 	{
-		joined[i] = s2[i - s1_len ];
+		joined[i] = s2[i - s1_len];
 		i++;
 	}
 	joined[i] = '\0';

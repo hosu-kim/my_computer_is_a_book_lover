@@ -16,14 +16,14 @@
 # include <unistd.h>
 # include <stdlib.h>
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1024
+#  define BUFFER_SIZE 1024
 # endif
 
 //get_next_line.c
 char	*line_into_storage(int fd, char *str);
+char	*extract_line(char *line_storage);
+char	*new_line_storage(char *storage);
 char	*get_next_line(int fd);
-char	*extract_line(char *left_str);
-char	*new_left_str(char *left_str);
 // get_next_line_utils.c
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
