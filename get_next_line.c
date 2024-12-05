@@ -28,24 +28,26 @@ char	*line_into_storage(int fd, char *line_storage)
 	int		bytes_read;
 
 	line = malloc(BUFFER_SIZE + 1);
-	if (!line)
-		return (NULL);
 	if (!line_storage)
 		line_storage = ft_strdup("");
-	bytes_read = read(fd, line, BUFFER_SIZE);
+	bytes_read = 1;
 	while (bytes_read > 0)
 	{
+		bytes_read = read(fd, line, BUFFER_SIZE);
+		if (bytes_read < 0)
+		{
+			free(line);
+			free(line_storage);
+			return (NULL);
+		}
+		if (bytes_read == 0)
+			break ;
 		line[bytes_read] = '\0';
 		line_storage = strjoin_and_free(line_storage, line);
 		if (ft_strchr(line_storage, '\n'))
 			break ;
 	}
 	free(line);
-	if (bytes_read < 0)
-	{
-		free(line_storage);
-		return (NULL);
-	}
 	return (line_storage);
 }
 
