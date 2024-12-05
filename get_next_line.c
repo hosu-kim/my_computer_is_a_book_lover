@@ -12,16 +12,7 @@
 
 #include "get_next_line.h"
 
-// stjoin and then free()
-char	*strjoin_and_free(char *s1, const char *s2)
-{
-	char	*result;
-
-	result = ft_strjoin(s1, s2);
-	free(s1);
-	return (result);
-}
-
+// Takes a line from the text file and append it into line_storage
 char	*line_into_storage(int fd, char *line_storage)
 {
 	char	*line;
@@ -43,7 +34,7 @@ char	*line_into_storage(int fd, char *line_storage)
 		if (bytes_read == 0)
 			break ;
 		line[bytes_read] = '\0';
-		line_storage = strjoin_and_free(line_storage, line);
+		line_storage = ft_strjoin_and_free(line_storage, line);
 		if (ft_strchr(line_storage, '\n'))
 			break ;
 	}
@@ -51,38 +42,36 @@ char	*line_into_storage(int fd, char *line_storage)
 	return (line_storage);
 }
 
-// Extracts a line in left_str and appends it into line.
+// Extracts a line from line_storage and appends it into extracted_line.
 char	*extract_line(char *line_storage)
 {
 	int		i;
-	char	*extract;
+	char	*extracted_line;
 
 	i = 0;
 	if (!line_storage[i])
 		return (NULL);
 	while (line_storage[i] && line_storage[i] != '\n')
 		i++;
-	extract = malloc((i + 2) * sizeof(char));
-	if (!extract)
+	extracted_line = malloc((i + 2) * sizeof(char));
+	if (!extracted_line)
 		return (NULL);
 	i = 0;
 	while (line_storage[i] && line_storage[i] != '\n')
 	{
-		extract[i] = line_storage[i];
+		extracted_line[i] = line_storage[i];
 		i++;
 	}
 	if (line_storage[i] == '\n')
 	{
-		extract[i] = line_storage[i];
+		extracted_line[i] = line_storage[i];
 		i++;
 	}
-	extract[i] = '\0';
-	return (extract);
+	extracted_line[i] = '\0';
+	return (extracted_line);
 }
 
-/**
- * @brief After printing a line, removes it in line_storage
- */
+// After printing a line, removes it in line_storage
 char	*new_line_storage(char *line_storage)
 {
 	int		i;
@@ -131,6 +120,3 @@ char	*get_next_line(int fd)
 	line_storage = new_line_storage(line_storage);
 	return (line);
 }
-/*
-* static 변수는 한 번만 초기화됨; 기본 초기화값: NULL
-*/

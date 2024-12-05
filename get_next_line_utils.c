@@ -73,7 +73,7 @@ char	*ft_strdup(const char *s1)
 */
 
 // Too many lines
-char	*ft_strjoin(const char *s1, const char *s2)
+char	*ft_strjoin_and_free(char *s1, const char *s2)
 {
 	int		s1_len;
 	int		s2_len;
@@ -97,6 +97,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 		i++;
 	}
 	joined[i] = '\0';
+	free(s1);
 	return (joined);
 }
 
