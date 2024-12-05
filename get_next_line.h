@@ -20,6 +20,7 @@
 # endif
 
 //get_next_line.c
+char	*strjoin_and_free(char *s1, const char *s2);
 char	*line_into_storage(int fd, char *str);
 char	*extract_line(char *line_storage);
 char	*new_line_storage(char *storage);

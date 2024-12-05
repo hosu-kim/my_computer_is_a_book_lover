@@ -13,7 +13,7 @@
 #include "get_next_line.h"
 
 // string-length
-// returns the length of the provided string.
+// returns the length of a string.
 size_t	ft_strlen(const char *s)
 {
 	size_t	len;

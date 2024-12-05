@@ -12,16 +12,19 @@
 
 #include "get_next_line.h"
 
-/**
- * @brief Reads a line from a file descriptor and appends it to a string.
- * @param fd fd to read from
- * @param line_storage string to append the data into.
- * @return line_storage / NULL on failure.
-*/
+// stjoin and then free()
+char	*strjoin_and_free(char *s1, const char *s2)
+{
+	char	*result;
+
+	result = ft_strjoin(s1, s2);
+	free(s1);
+	return (result);
+}
+
 char	*line_into_storage(int fd, char *line_storage)
 {
 	char	*line;
-	char	*temp;
 	int		bytes_read;
 
 	line = malloc(BUFFER_SIZE + 1);
@@ -33,27 +36,20 @@ char	*line_into_storage(int fd, char *line_storage)
 	while (bytes_read > 0)
 	{
 		line[bytes_read] = '\0';
-		temp = ft_strjoin(line_storage, line);
-		free(line_storage);
-		line_storage = temp;
+		line_storage = strjoin_and_free(line_storage, line);
 		if (ft_strchr(line_storage, '\n'))
 			break ;
-		bytes_read = read(fd, line, BUFFER_SIZE);
 	}
 	free(line);
+	if (bytes_read < 0)
+	{
+		free(line_storage);
+		return (NULL);
+	}
 	return (line_storage);
 }
-/*
-malloc((BUFFER_SIZE + 1) * sizeof(char)): line 버퍼 할당 시 널 종료 문자를 위한 공간 확보
-read (파일 디스크립터, 저장할 버퍼, 몇 바이트?)
-	-반환: 읽어온 바이트 수, 오류 시 -1,
-	-불러온 데이터가 '적거나 없으면' 세번째 매개변수와 값이 달라질 수 있음.
-return (NULL): Error indication
-*/
 
-/*
-Extracts a line in left_str and appends it into line.
-*/
+// Extracts a line in left_str and appends it into line.
 char	*extract_line(char *line_storage)
 {
 	int		i;
