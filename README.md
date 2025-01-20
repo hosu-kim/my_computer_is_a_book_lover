@@ -1,4 +1,9 @@
+<div align="center">
+    <img src="https://github.com/user-attachments/assets/b268e4fb-4c9d-4dcf-b0ac-f86ef159f705" width="400" alt="A black cute pug reading a book">
+</div>
+
 # my_file_content_reader
+
 ## Overview
 `get_next_line` is a simple function that reads a line from a file descriptor. The function is designed to be called in a loop, returning one line at a time from the file descriptor until the end of the file is reached. This project is a common exercise in C programming, often used to practice file I/O operations and dynamic memory management.
 ## Features
