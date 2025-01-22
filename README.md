@@ -4,7 +4,7 @@
 </div>
 
 ## Overview
-`get_next_line` is a simple function that reads a line from a file descriptor. The function is designed to be called in a loop, returning one line at a time from the file descriptor until the end of the file is reached. This project is a common exercise in C programming, often used to practice file I/O operations and dynamic memory management.
+`my_file_content_reader` is a tool designed to efficiently read the contents of a file one line at a time. It focuses on handling file I/O operations in C, utilizing dynamic memory management to ensure each line is read and processed effectively. This project is ideal for developers who need precise control over file reading operations and efficient memory usage.
 ## Features
 - Reads a line from a file descriptor.
 - Handles multiple calls to return successive lines.
