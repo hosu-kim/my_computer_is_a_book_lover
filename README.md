@@ -1,10 +1,10 @@
 <div align="center">
-	<h1>my_file_content_reader 📄🧐✍️</h1>
+	<h1>My computer is a book lover📄🧐✍️</h1>
     <img src="https://github.com/user-attachments/assets/b268e4fb-4c9d-4dcf-b0ac-f86ef159f705" width="400" alt="A black cute pug reading a book">
 </div>
 
 ## Overview
-`my_file_content_reader` is a tool designed to efficiently read the contents of a file one line at a time. It focuses on handling file I/O operations in C, utilizing dynamic memory management to ensure each line is read and processed effectively. This project is ideal for developers who need precise control over file reading operations and efficient memory usage.
+`my_computer_is_a_book_lover` is a tool designed to efficiently read the contents of a file one line at a time. It focuses on handling file I/O operations in C, utilizing dynamic memory management to ensure each line is read and processed effectively. This project is ideal for developers who need precise control over file reading operations and efficient memory usage.
 ## Features
 - Reads a line from a file descriptor.
 - Handles multiple calls to return successive lines.
