@@ -1,10 +1,10 @@
 <div align="center">
-	<h1>Ugh, my computer is a reading nerd📄🤓✍️</h1>
+	<h1>Ugh, my computer is a book nerd📄🤓✍️</h1>
     <img src="https://github.com/user-attachments/assets/b268e4fb-4c9d-4dcf-b0ac-f86ef159f705" width="400" alt="A black cute pug reading a book">
 </div>
 
 ## Overview
-`ugh_my_computer_is_a_reading_nerd` is a C tool designed to efficiently read the contents of a file one line at a time. It focuses on handling file I/O operations in C, utilizing dynamic memory management to ensure each line is read and processed effectively. This tool is ideal for developers who need precise control over file reading operations and efficient memory usage.
+`ugh_my_computer_is_a_book_nerd` is a C tool designed to efficiently read the contents of a file one line at a time. It focuses on handling file I/O operations in C, utilizing dynamic memory management to ensure each line is read and processed effectively. This tool is ideal for developers who need precise control over file reading operations and efficient memory usage.
 ## Features
 - Reads a line from a file descriptor.
 - Handles multiple calls to return successive lines.
