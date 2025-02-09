@@ -1,5 +1,5 @@
 <div align="center">
-	<h1>Ugh, my computer is a book lover📄🧐✍️</h1>
+	<h1>Ugh, my computer is a book lover📄🤓✍️</h1>
     <img src="https://github.com/user-attachments/assets/b268e4fb-4c9d-4dcf-b0ac-f86ef159f705" width="400" alt="A black cute pug reading a book">
 </div>
 
